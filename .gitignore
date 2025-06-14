@@ -4,3 +4,9 @@ __pycache__/
 
 # Secrets
 .env
+
+# Temporary & Data files
+*.pyc
+temp.wav
+memory.json
+feedback_log.json

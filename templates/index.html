@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALIENX Voice AI</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
 </head>
 <body>
     <div class="container">
@@ -16,44 +16,35 @@
             <div class="brand-tagline">DESIGNATED AI BY <ALIENXCODE/></div>
             <h1>A L I E N X</h1>
         </div>
-
         <div class="pipeline-status">
             <div class="pipeline-step" id="step-input"><div class="step-title">USER INPUT</div><div class="step-status">STANDBY</div></div>
             <div class="pipeline-step" id="step-detect"><div class="step-title">LANGUAGE DETECT</div><div class="step-status">AWAITING</div></div>
             <div class="pipeline-step" id="step-core"><div class="step-title">GEMINI CORE</div><div class="step-status">AWAITING</div></div>
             <div class="pipeline-step" id="step-response"><div class="step-title">RESPONSE</div><div class="step-status">AWAITING</div></div>
         </div>
-
         <div class="voice-interface">
             <button class="voice-button" id="voiceBtn" title="Initiate Voice Transmission">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
-                    <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
-                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16"><path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/><path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/></svg>
             </button>
             <div class="status" id="status">Initiate transmission via voice, text, or file upload.</div>
         </div>
-
         <div class="chat-container" id="chatContainer">
             <div class="message assistant">
-                Greetings. I am ALIENX. My systems are online. You can now also upload .wav audio files for analysis.
+                Greetings. I am ALIENX. My systems are online. How may I assist you?
             </div>
         </div>
-        
         <div class="chat-input-area">
             <form id="chatForm">
                 <input type="text" id="chatInput" placeholder="Transmit your query here..." autocomplete="off">
                 <button type="submit" id="sendBtn" title="Send Text Query">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.001.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-4.995-3.178 11.13-6.48Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16"><path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.001.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-4.995-3.178 11.13-6.48z"/></svg>
                 </button>
             </form>
-            
-            <!-- NEW: Audio Upload Button -->
-            <input type="file" id="audioUploadInput" accept=".wav" hidden>
-            <label for="audioUploadInput" class="control-btn upload-btn" title="Upload WAV File">
+            <input type="file" id="audioUploadInput" accept=".wav,.mp3,.m4a" hidden>
+            <label for="audioUploadInput" class="control-btn upload-btn" title="Upload Audio File">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/></svg>
             </label>
-             <button class="control-btn" id="clearBtn">Clear Log</button>
+             <button class="control-btn" id="clearBtn" title="Clear Chat Log">Clear Log</button>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

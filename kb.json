@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What is LenDenClub and is it a bank?",
+        "answer": "LenDenClub is one of India's largest Peer-to-Peer (P2P) lending platforms. It is not a bank; it's a Non-Banking Financial Company (NBFC-P2P) registered with the Reserve Bank of India (RBI). It acts as an online marketplace or intermediary that connects individual lenders looking to invest money with individuals and businesses seeking loans."
+    },
+    {
+        "question": "Who founded LenDenClub and what are their backgrounds?",
+        "answer": "LenDenClub was co-founded by Bhavin Patel and Dipesh Karki. Bhavin Patel, the CEO, has a background in Engineering and Finance (PGDM), with experience consulting for NBFCs before starting LenDenClub. Dipesh Karki, the Co-founder & CPTO, is an engineer from the National Institute of Technology, Kurukshetra, and has a strong background in software development and technology leadership."
+    },
+    {
+        "question": "When was LenDenClub established?",
+        "answer": "LenDenClub was founded in 2015. It was operational before the RBI introduced its official regulatory framework for P2P lending platforms in 2017."
+    },
+    {
+        "question": "How is LenDenClub regulated?",
+        "answer": "LenDenClub is regulated by the Reserve Bank of India (RBI) under the 'Master Direction - Non-Banking Financial Company – Peer to Peer Lending Platform (Reserve Bank) Directions, 2017'. It holds an NBFC-P2P license, which requires adherence to strict prudential, operational, and disclosure norms set by the RBI to protect the interests of both lenders and borrowers."
+    },
+    {
+        "question": "What are the key financial and performance metrics of LenDenClub as of early 2025?",
+        "answer": "According to its February 2025 Platform Performance Factsheet, LenDenClub has over 2 Crore registered users and has disbursed more than ₹16,233 Crore in loans to date. The platform's Assets Under Management (AUM) stood at ₹983.41 Crore with a Non-Performing Asset (NPA) rate of 3.75%. Lenders earned an average interest of 10.68% p.a."
+    },
+    {
+        "question": "What is the maximum amount an individual can invest (lend) on P2P platforms?",
+        "answer": "As per RBI guidelines, the aggregate exposure of a lender to all borrowers across all P2P platforms is capped at ₹50,00,000 (50 lakhs) at any point in time. Additionally, a single lender's exposure to the same borrower, across all P2P platforms, must not exceed ₹50,000."
+    },
+    {
+        "question": "What is the maximum loan amount a single borrower can take from P2P platforms?",
+        "answer": "According to RBI prudential norms, the total aggregate loan taken by a borrower at any point in time, across all P2P platforms combined, is capped at ₹10,00,000 (10 lakhs)."
+    },
+    {
+        "question": "What is the typical return a lender can expect on LenDenClub?",
+        "answer": "Based on the platform's performance factsheets from early 2025, the interest earned by lenders ranged from 10.6% to 11.3% p.a. It is important to note that these are past returns and P2P lending does not guarantee any returns. The actual returns depend on the performance of the underlying loan portfolio and are subject to credit default risk."
+    },
+    {
+        "question": "What are the main risks involved for a lender in P2P lending?",
+        "answer": "The primary risk for a lender is Credit Default Risk, which is the risk that a borrower will not repay the loan, leading to a loss of the principal amount and/or interest. P2P lending is an investment in unsecured loans, and the risk is entirely borne by the lender. Other potential risks include platform bankruptcy and data leakage, though these are mitigated by regulatory frameworks."
+    },
+    {
+        "question": "How does LenDenClub manage the risk of loan defaults for its lenders?",
+        "answer": "LenDenClub employs a multi-pronged strategy to mitigate risks: 1. **Stringent Credit Assessment:** Borrowers are evaluated on over 600 data points, including CIBIL score, bank statements, and proprietary data, leading to a reported 95% rejection rate of loan applicants. 2. **Hyper-Diversification:** Lenders' funds are automatically diversified across a large number of borrowers, with investments as low as ₹100 per borrower, minimizing the impact of a single default. 3. **Collection Mechanism:** In case of a default, LenDenClub has a dedicated in-house collections team and also partners with top collection agencies for recovery, which includes field recovery and home visits."
+    },
+    {
+        "question": "How are funds handled? Does LenDenClub hold my money?",
+        "answer": "No, LenDenClub does not directly hold lenders' or borrowers' money. As mandated by the RBI, all fund transfers happen through escrow accounts managed by a bank-promoted trustee (ICICI Trusteeship Services Ltd). There are separate accounts for funds from lenders and collections from borrowers. This ensures funds are securely transferred between the lender and borrower's bank accounts without the platform having direct control, a mechanism designed to protect investor funds."
+    },
+    {
+        "question": "What are the different lending options available on the platform?",
+        "answer": "LenDenClub offers two primary lending options: 1. **Manual Lending:** Lenders can manually assess and select individual borrowers from the platform's marketplace. The minimum lending amount is ₹250. 2. **Lumpsum Lending (Auto-Lending):** This allows for automated bulk lending to multiple borrowers simultaneously based on preset criteria, enabling efficient diversification. The minimum lending amount is typically higher, around ₹25,000."
+    },
+    {
+        "question": "What is the registration and KYC process for becoming a lender?",
+        "answer": "The process involves: 1. **Sign-up:** Registering on the LenDenClub platform or app. 2. **ID Details:** Entering PAN & Aadhar details. 3. **Live KYC:** This is typically an auto-verified process if CKYC is available, or it's completed via DigiLocker. 4. **Legal Authorization:** Consenting to the platform's terms and policies. 5. **Bank Account Verification:** Linking and verifying your bank account where repayments will be credited."
+    },
+    {
+        "question": "What is the loan repayment schedule?",
+        "answer": "Borrowers generally have repayment due dates on the 1st of every month. For certain products like merchant loans, borrowers may make daily repayments. As they repay, the amount (principal + interest) is credited directly to the lender's registered bank account, typically on a T+1 basis (transaction day + 1)."
+    },
+    {
+        "question": "How did LenDenClub respond to the RBI's updated guidelines in August 2024?",
+        "answer": "LenDenClub took several proactive steps between June 2023 and August 2024 to align with RBI's guidance. These actions included: stopping 9 partnership businesses within 7 days, reducing its BNPL portfolio from 80% to zero, improving KYC journeys for both lenders and borrowers, and introducing greater disclosures. As of August 16, 2024, the company reported being compliant with 9 out of 10 major points in the modified RBI guidelines."
+    },
+    {
+        "question": "What types of loans does LenDenClub facilitate?",
+        "answer": "LenDenClub facilitates a mix of loan products. The January 2025 factsheet shows two main categories: 1. **Personal Loans:** Unsecured loans for salaried or self-employed individuals, which are generally B2C (Business-to-Consumer) with a mid-tenure of 3-6 months. 2. **Merchant Loans:** Loans for small businesses, which are B2B (Business-to-Business) with a longer tenure (above 6 months)."
+    },
+    {
+        "question": "What is the 'Leverage Ratio' that NBFC-P2Ps must maintain?",
+        "answer": "As per RBI's prudential norms, an NBFC-P2P like LenDenClub must maintain a Leverage Ratio of not more than 2. This ratio is calculated as Total Outside Liabilities divided by Owned Funds. It's a measure to ensure the platform is not over-leveraged and has a stable capital base."
+    },
+    {
+        "question": "Does LenDenClub cross-sell other financial products?",
+        "answer": "According to the RBI Master Directions, an NBFC-P2P cannot cross-sell any product except for loan-specific insurance. They are explicitly prohibited from cross-selling any insurance product that acts as a credit enhancement or credit guarantee."
+    },
+    {
+        "question": "What are the compulsory disclosures a P2P platform must provide?",
+        "answer": "The RBI mandates specific disclosures: **To the Lender:** Details about the borrower (with consent), required amount, interest rate sought, and credit score. **To the Borrower:** Details about the lender(s) including proposed amount and interest rate offered (but excluding personal identity). **On the Website:** An overview of the credit assessment methodology, data protection policies, grievance redressal mechanism, and monthly portfolio performance including NPA data."
+    },
+    {
+        "question": "What is the process in case a borrower defaults on a loan?",
+        "answer": "In case of a default, LenDenClub initiates recovery measures. Their call center script and policies mention: 1. A dedicated in-house collection team. 2. Tie-ups with top collection agencies for field recovery. 3. Providing legal assistance and aid from debt collection agencies. As a lender, you are kept informed about the recovery process, but recovery is not guaranteed."
+    },
+    {
+        "question": "What technology does LenDenClub use to improve its services?",
+        "answer": "LenDenClub utilizes technology and AI to enhance its operations. For example, the 'LenDenGenie' is a proprietary AI chatbot designed to handle customer queries, achieving a 62% resolution rate and freeing up agent time for more complex issues. They also use AI/ML in their credit assessment platform to evaluate borrowers from over 600 data points."
+    },
+    {
+        "question": "How does P2P lending compare to other investments like Fixed Deposits or Mutual Funds?",
+        "answer": "P2P Lending offers potentially higher returns (e.g., 10-12%) compared to traditional FDs (e.g., 7.25%) but comes with significantly higher risk, specifically credit risk, as it involves unsecured loans. Unlike Mutual Funds, P2P lending has no market risk (it's not linked to equity/bond markets) but lacks the liquidity of mutual funds as your money is locked in until the borrower repays. It is a non-market linked, high-risk alternative investment."
+    },
+    {
+        "question": "What are the main business models in the Indian P2P industry?",
+        "answer": "Two primary models have emerged: 1. **Direct Disbursal Model:** The platform directly connects individual lenders and borrowers and manages the entire process. LenDenClub primarily operates under this model. 2. **Partner-Assisted Disbursal Model:** The platform partners with other entities (like MFIs or field partners) who help source borrowers, particularly in rural or semi-urban areas. Repayment may also be routed through these partners."
+    },
+    {
+        "question": "What is the significance of the Escrow Account T+1 rule from the RBI?",
+        "answer": "The RBI guideline that funds in escrow accounts should not remain for more than T+1 day (Transaction day + 1) is a crucial measure for investor protection. It ensures that money collected from borrowers is transferred to lenders' bank accounts almost immediately, and funds deposited by lenders for investment are disbursed to borrowers swiftly. This minimizes the risk of funds being held and potentially misused by the platform, increasing transparency and efficiency."
+    },
+    {
+        "question": "Who are the target borrowers for LenDenClub?",
+        "answer": "Based on platform data and product descriptions, LenDenClub caters to a diverse range of borrowers. This includes salaried individuals for personal loans and small business owners for merchant loans. Their borrower base is spread across India, with a focus on urban and semi-urban customers. The average age of borrowers is concentrated in the 25-44 year bracket."
+    },
+    {
+        "question": "What are the eligibility criteria for a company to become an NBFC-P2P?",
+        "answer": "To obtain an NBFC-P2P license from the RBI, a company must: 1. Be incorporated as a company in India under the Companies Act. 2. Have a minimum Net Owned Fund (NOF) of not less than ₹2 crores. 3. Have the necessary technological, managerial, and entrepreneurial resources. 4. Submit a viable business plan and have a robust, secure IT system."
+    },
+    {
+        "question": "What does LenDenClub's NPA of 3.78% (as of Dec 2024) mean?",
+        "answer": "An NPA (Non-Performing Asset) rate of 3.78% means that 3.78% of the platform's loan portfolio is overdue by more than 90 days. This metric is a key indicator of the credit risk and quality of the loans being originated on the platform. While diversification helps mitigate the impact on any single lender, this figure reflects the inherent risk of default in the P2P lending space."
+    },
+    {
+        "question": "What did the RBI's guidance in August 2024 clarify about P2P platforms?",
+        "answer": "The RBI's modifications on August 16, 2024, clarified several key points to safeguard investors. Major clarifications included: a strict 'No Credit Enhancement' role for platforms, no outsourcing of key operational functions, a ban on cross-selling (except specific insurance), and a firm T+1 settlement timeline for escrow accounts. These changes aimed to ensure P2P platforms operate strictly as intermediaries or exchanges, not as quasi-banks."
+    },
+    {
+        "question": "How does a P2P platform like LenDenClub earn revenue?",
+        "answer": "P2P platforms primarily earn revenue through fees. As per industry studies, this is typically commission-based or membership-based and can include registration/listing fees, processing fees on loans from borrowers, and sometimes a commission on the repayment (EMI) collected. RBI guidelines state that the platform's pricing policy must be objective and fees should be disclosed upfront."
+    },
+    {
+        "question": "Is my investment (lent money) liquid? Can I withdraw it at any time?",
+        "answer": "No, investments in P2P lending are not liquid. Your money is lent to a borrower for a specific tenure (e.g., 2 to 36 months). You can only get your principal back as the borrower repays it in monthly EMIs. You cannot withdraw the entire principal amount at will before the loan tenure is complete. Some platforms were exploring secondary sales of loans, but recent RBI guidelines have heavily discouraged this to prevent platforms from offering liquidity and functioning like banks."
+    }
+]

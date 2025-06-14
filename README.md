@@ -87,7 +87,7 @@ python -m venv venv
 .\venv\Scripts\activate
 
 
-### 4. Install Dependencies
+# 4. Install Dependencies
 
 
 pip install -r requirements.txt

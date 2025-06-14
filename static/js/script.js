@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusDiv = document.getElementById('status');
     const chatContainer = document.getElementById('chatContainer');
     const clearBtn = document.getElementById('clearBtn');
-    const langSelect = document.getElementById('langSelect');
-
-    let isRecording = false;
-    let currentLang = langSelect.value;
-    let ttsVoices = [];
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const audioUploadInput = document.getElementById('audioUploadInput');
     
+    let isRecording = false;
+    let ttsVoices = [];
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition;
 
@@ -19,94 +19,109 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     const setupRecognition = () => {
-        if (SpeechRecognition) {
-            recognition = new SpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            recognition.lang = currentLang;
-
-            recognition.onstart = () => {
-                isRecording = true;
-                voiceBtn.classList.add('recording');
-                updateStatus('Awaiting transmission...');
-                updatePipelineStep('step-voice', 'active', 'RECEIVING');
-            };
-
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                updatePipelineStep('step-voice', 'completed', 'RECEIVED');
-                processTranscript(transcript.trim());
-            };
-
-            recognition.onend = () => {
-                isRecording = false;
-                voiceBtn.classList.remove('recording');
-                if (statusDiv.textContent === 'Awaiting transmission...') {
-                     updateStatus('Transmission timed out. Awaiting new directive.');
-                     resetPipeline();
-                }
-            };
-
-            recognition.onerror = (event) => {
-                console.error('Speech recognition error:', event.error);
-                updateStatus(`Error: ${event.error}.`);
-                resetPipeline();
-            };
-
-        } else {
-            updateStatus('Speech recognition not supported.');
+        if (!SpeechRecognition) {
+            statusDiv.textContent = 'Voice recognition not supported by browser.';
             voiceBtn.disabled = true;
-            langSelect.disabled = true;
-        }
-    };
-    
-    const processTranscript = async (transcript) => {
-        if (!transcript) {
-            updateStatus('No intelligible data received.');
-            resetPipeline();
             return;
         }
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        
+        // This dynamically sets language, though backend detection is now primary
+        recognition.lang = 'en-US';
 
-        addMessage('user', transcript);
-        updateStatus('Analyzing transmission...');
-        
-        // Update Pipeline UI
-        updatePipelineStep('step-asr', 'active', 'DECRYPTING');
-        
+        recognition.onstart = () => {
+            isRecording = true;
+            voiceBtn.classList.add('recording');
+            updateStatus('Awaiting transmission...');
+            updatePipelineStep('input', 'active', 'RECEIVING');
+        };
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            updatePipelineStep('input', 'completed', 'VOICE');
+            processTranscript(transcript.trim());
+        };
+
+        recognition.onend = () => {
+            isRecording = false;
+            voiceBtn.classList.remove('recording');
+            if (statusDiv.textContent === 'Awaiting transmission...') {
+                updateStatus('Transmission timed out.');
+                resetPipeline();
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            updateStatus(`Error: ${event.error}.`);
+            resetPipeline();
+        };
+    };
+    
+    const handleServerResponse = async (responsePromise, inputType) => {
         try {
-            updatePipelineStep('step-asr', 'completed', 'COMPLETE');
-            updatePipelineStep('step-nlp', 'active', 'PROCESSING');
+            updatePipelineStep('detect', 'active', 'ANALYZING');
+            const res = await responsePromise;
+
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({ response: 'Unknown server error.' }));
+                // Use the server's error message if available
+                throw new Error(errData.response || errData.error || `Server error: ${res.status}`);
+            }
             
-            // API Call to Flask Backend with language info
-            const res = await fetch('/process', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ transcript: transcript, lang: currentLang })
-            });
-
-            if (!res.ok) throw new Error(`Server connection error: ${res.status}`);
-
+            updatePipelineStep('detect', 'completed', 'DETECTED');
+            updatePipelineStep('core', 'active', 'PROCESSING');
+            
             const data = await res.json();
             
-            // UI update for backend processing complete
-            updatePipelineStep('step-nlp', 'completed', 'COMPLETE');
-            updatePipelineStep('step-response', 'active', 'GENERATING');
+            updatePipelineStep('core', 'completed', 'COMPLETE');
+            updatePipelineStep('response', 'active', 'GENERATING');
 
             addMessage('assistant', data.response);
             speakResponse(data.response, data.lang);
 
-            updatePipelineStep('step-response', 'completed', 'COMPLETE');
+            updatePipelineStep('response', 'completed', 'COMPLETE');
             updateStatus('System ready. Awaiting directive.');
 
             setTimeout(resetPipeline, 4000);
 
         } catch (error) {
             console.error('Error processing request:', error);
-            const errorMessage = "Connection to my core matrix has been disrupted. Please verify server protocols and try again.";
+            const errorMessage = error.message || "Connection to core matrix disrupted.";
             addMessage('assistant', errorMessage);
-            updateStatus('Connection Anomaly Detected');
+            updateStatus('Anomaly Detected');
             resetPipeline();
         }
+    };
+    
+    const processTranscript = (transcript) => {
+        addMessage('user', transcript);
+        updateStatus('Analyzing transmission...');
+        updatePipelineStep('input', 'completed', 'TEXT/VOICE');
+
+        const promise = fetch('/process', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ transcript })
+        });
+        handleServerResponse(promise);
+    };
+
+    const processAudioFile = (file) => {
+        addMessage('user', `[Uploaded File: ${file.name}]`);
+        updateStatus('Uploading and transcribing...');
+        updatePipelineStep('input', 'active', 'UPLOADING');
+
+        const formData = new FormData();
+        formData.append('audio_file', file);
+
+        const promise = fetch('/upload_audio', {
+            method: 'POST',
+            body: formData
+        });
+        handleServerResponse(promise);
     };
     
     const speakResponse = (text, lang) => {
@@ -114,12 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
             speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = lang;
-
             const voice = ttsVoices.find(v => v.lang === lang);
             if (voice) {
                 utterance.voice = voice;
+            } else {
+                console.warn(`TTS voice for lang '${lang}' not found.`);
             }
-
             speechSynthesis.speak(utterance);
         }
     };
@@ -136,41 +151,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateStatus = (message) => statusDiv.textContent = message;
 
     const updatePipelineStep = (stepId, status, message) => {
-        const step = document.getElementById(stepId);
-        if (step) {
+        const step = document.getElementById(`step-${stepId}`);
+        if(step) {
             step.className = `pipeline-step ${status}`;
             step.querySelector('.step-status').textContent = message;
         }
     };
-
     const resetPipeline = () => {
-        updatePipelineStep('step-voice', '', 'STANDBY');
-        updatePipelineStep('step-asr', '', 'AWAITING');
-        updatePipelineStep('step-nlp', '', 'AWAITING');
-        updatePipelineStep('step-response', '', 'AWAITING');
+        ['input', 'detect', 'core', 'response'].forEach(id => 
+            updatePipelineStep(id, '', id === 'input' ? 'STANDBY' : 'AWAITING')
+        );
     };
 
-    const clearChat = () => {
+    const clearChat = async () => {
         chatContainer.innerHTML = '';
         addMessage('assistant', 'Log cleared. Awaiting new directive.');
         resetPipeline();
         updateStatus('System ready.');
+        try {
+            await fetch('/clear', { method: 'POST' });
+            console.log("Server history cleared.");
+        } catch (error) {
+            console.error("Failed to clear server history:", error);
+        }
     };
     
     // --- Event Listeners ---
     voiceBtn.addEventListener('click', () => {
-        if (!recognition) return;
-        isRecording ? recognition.stop() : recognition.start();
+        if (speechSynthesis.speaking) speechSynthesis.cancel();
+        if (recognition) {
+            isRecording ? recognition.stop() : recognition.start();
+        }
     });
     
-    clearBtn.addEventListener('click', clearChat);
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userText = chatInput.value.trim();
+        if(userText) {
+            if (speechSynthesis.speaking) speechSynthesis.cancel();
+            updatePipelineStep('input', 'active', 'TEXT');
+            processTranscript(userText);
+            chatInput.value = '';
+        }
+    });
 
-    langSelect.addEventListener('change', () => {
-        currentLang = langSelect.value;
-        if(recognition) {
-            recognition.lang = currentLang;
-            console.log(`Language protocol updated to: ${currentLang}`);
-            addMessage('assistant', `Language protocol set to ${langSelect.options[langSelect.selectedIndex].text}.`);
+    audioUploadInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (speechSynthesis.speaking) speechSynthesis.cancel();
+            processAudioFile(file);
+        }
+        // Reset the input so the same file can be uploaded again
+        e.target.value = null; 
+    });
+
+    clearBtn.addEventListener('click', clearChat);
+    
+    // Interrupt speech on any click that isn't on a primary control
+    document.addEventListener('click', (event) => {
+        const controls = [voiceBtn, clearBtn, audioUploadInput, chatInput, chatForm.querySelector('button')];
+        // Check if the click target or its parent is one of the controls
+        if (!controls.some(control => control.contains(event.target))) {
+             if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
         }
     });
 

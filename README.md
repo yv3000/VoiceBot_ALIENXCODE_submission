@@ -29,21 +29,22 @@
 
 
 
-## 📁 Project Structure
+### 📂 Project Structure
 
 voice-ai-assistant/
-├── .env                # Store your Google API Key
-├── app.py              # Flask backend
-├── kb.json             # Custom knowledge base
-├── requirements.txt    # Python dependencies
+├── .env # Store your Google API Key
+├── .gitignore # Ignore sensitive files and virtual env
+├── app.py # Flask backend
+├── kb.json # Custom knowledge base
+├── requirements.txt # Python dependencies
+├── README.md # Project documentation
 ├── templates/
-│   └── index.html      # Main web page
+│ └── index.html # Main web page
 └── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        └── script.js
-
+├── css/
+│ └── style.css # Styling
+└── js/
+└── script.js # Frontend logic
 
 
 ## 🚀 Getting Started
